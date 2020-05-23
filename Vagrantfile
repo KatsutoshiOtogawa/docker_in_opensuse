@@ -65,6 +65,11 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
     zypper in docker docker-compose
+
     systemctl enable docker
+
+    # if you use docker on general user,
+    # chgrp docker /var/run/docker.sock
+    # usermod -aG docker [UserName]
   SHELL
 end
